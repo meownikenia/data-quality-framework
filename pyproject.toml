@@ -46,6 +46,8 @@ select = ["E", "F", "I", "N", "W", "UP", "B"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+
 addopts = "--cov=dq_framework --cov-report=term-missing -v"
 
 [tool.mypy]

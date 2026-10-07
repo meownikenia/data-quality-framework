@@ -1,0 +1,26 @@
+suite: orders_quality
+table: analytics.orders
+description: Data quality checks for the orders table
+
+checks:
+  - type: not_null
+    column: order_id
+
+  - type: unique
+    column: order_id
+
+  - type: not_null
+    column: customer_id
+
+  - type: range
+    column: amount
+    min: 0
+    max: 100000
+
+  - type: row_count
+    min: 5
+    max: 1000000
+
+  - type: freshness
+    column: created_at
+    max_age_hours: 24
