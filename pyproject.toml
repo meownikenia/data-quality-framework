@@ -7,7 +7,7 @@ name = "dq-framework"
 version = "0.1.0"
 description = "Production-ready data quality framework for modern data stacks"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "Meownikenia", email = "you@example.com" }]
 dependencies = [
