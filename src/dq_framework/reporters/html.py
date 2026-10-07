@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from jinja2 import Environment, select_autoescape
-
 from dq_framework.models import SuiteResult
 from dq_framework.reporters.base import Reporter
-
+from jinja2 import Environment, select_autoescape
 
 HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
@@ -69,8 +67,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     border-radius: 8px;
     overflow: hidden;
   }
-  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
-  th { background: #f1f5f9; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }  th { background: #f1f5f9; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
   tr:last-child td { border-bottom: none; }
   .badge {
     display: inline-block;

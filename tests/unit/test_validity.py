@@ -2,9 +2,8 @@
 
 import pandas as pd
 import pytest
-
 from dq_framework.checks.validity import RangeCheck, RegexCheck
-from dq_framework.models import CheckStatus, Severity
+from dq_framework.models import CheckStatus
 
 
 class TestRangeCheck:

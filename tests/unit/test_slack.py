@@ -4,8 +4,7 @@ from datetime import UTC, datetime
 from unittest.mock import MagicMock, patch
 
 import pytest
-
-from dq_framework.alerting import SlackAlertError, SlackAlerter
+from dq_framework.alerting import SlackAlerter, SlackAlertError
 from dq_framework.models import CheckResult, CheckStatus, Severity, SuiteResult
 
 
@@ -97,7 +96,8 @@ class TestSlackPayload:
         payload = SlackAlerter("https://x", max_failures=3).build_payload(result)
 
         bullets = [
-            b for b in payload["blocks"]
+            b
+            for b in payload["blocks"]
             if b["type"] == "section" and b.get("text", {}).get("text", "").startswith("•")
         ]
         assert len(bullets) == 3

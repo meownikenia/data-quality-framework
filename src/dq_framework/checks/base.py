@@ -6,7 +6,6 @@ from abc import ABC, abstractmethod
 from typing import Any
 
 import pandas as pd
-
 from dq_framework.models import CheckResult, CheckStatus, Severity
 
 

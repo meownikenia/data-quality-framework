@@ -5,7 +5,6 @@ from pathlib import Path
 import pandas as pd
 import pytest
 import yaml
-
 from dq_framework.integrations import DQSuiteError, run_suite
 
 
@@ -85,7 +84,13 @@ class TestRunSuite:
         summary = run_suite(str(suite_path), str(data_path))
 
         expected = {
-            "suite_name", "table", "status", "pass_rate",
-            "duration_ms", "total_checks", "failed_checks", "critical_failures",
+            "suite_name",
+            "table",
+            "status",
+            "pass_rate",
+            "duration_ms",
+            "total_checks",
+            "failed_checks",
+            "critical_failures",
         }
         assert set(summary.keys()) == expected

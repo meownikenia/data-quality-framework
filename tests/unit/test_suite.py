@@ -5,7 +5,6 @@ from pathlib import Path
 import pandas as pd
 import pytest
 import yaml
-
 from dq_framework.suite import Suite, SuiteError
 
 
@@ -74,6 +73,7 @@ class TestSuiteFromDict:
                     "checks": [{"type": "range", "column": "amount"}],
                 }
             )
+
 
 class TestSuiteFromYaml:
     def test_load_from_yaml(self, tmp_path: Path):

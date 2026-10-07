@@ -6,7 +6,6 @@ import re
 import time
 
 import pandas as pd
-
 from dq_framework.checks.base import BaseCheck
 from dq_framework.models import CheckResult, CheckStatus, Severity
 

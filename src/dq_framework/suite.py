@@ -8,7 +8,6 @@ from typing import Any
 
 import pandas as pd
 import yaml
-
 from dq_framework.checks import CHECK_REGISTRY
 from dq_framework.checks.base import BaseCheck
 from dq_framework.models import CheckResult, CheckStatus, Severity, SuiteResult
@@ -59,15 +58,12 @@ class Suite:
             check_cls = CHECK_REGISTRY.get(check_type)
             if check_cls is None:
                 raise SuiteError(
-                    f"Unknown check type '{check_type}'. "
-                    f"Available: {sorted(CHECK_REGISTRY)}"
+                    f"Unknown check type '{check_type}'. " f"Available: {sorted(CHECK_REGISTRY)}"
                 )
             try:
                 checks.append(check_cls(**spec))
             except (TypeError, ValueError) as exc:
-                raise SuiteError(
-                    f"Invalid config for check '{check_type}': {exc}"
-                ) from exc
+                raise SuiteError(f"Invalid config for check '{check_type}': {exc}") from exc
 
         return cls(
             name=name,

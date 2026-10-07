@@ -7,7 +7,6 @@ import warnings
 from datetime import UTC, datetime, timedelta
 
 import pandas as pd
-
 from dq_framework.checks.base import BaseCheck
 from dq_framework.models import CheckResult, CheckStatus, Severity
 

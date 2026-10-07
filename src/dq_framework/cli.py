@@ -6,11 +6,10 @@ from pathlib import Path
 
 import pandas as pd
 import typer
-from rich.console import Console
-from rich.table import Table
-
 from dq_framework.models import CheckStatus, SuiteResult
 from dq_framework.suite import Suite, SuiteError
+from rich.console import Console
+from rich.table import Table
 
 app = typer.Typer(
     name="dq",

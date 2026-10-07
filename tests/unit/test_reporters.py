@@ -4,8 +4,6 @@ import json
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
-import pytest
-
 from dq_framework.models import CheckResult, CheckStatus, Severity, SuiteResult
 from dq_framework.reporters import HTMLReporter, JSONReporter
 

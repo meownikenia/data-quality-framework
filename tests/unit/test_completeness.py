@@ -1,15 +1,13 @@
 """Unit tests for completeness checks."""
 
 import pandas as pd
-import pytest
-
 from dq_framework.checks.completeness import NotNullCheck, UniqueCheck
 from dq_framework.models import CheckStatus, Severity
-
 
 # --------------------------------------------------------------------- #
 # NotNullCheck
 # --------------------------------------------------------------------- #
+
 
 class TestNotNullCheck:
     def test_passes_when_no_nulls(self):
@@ -54,6 +52,7 @@ class TestNotNullCheck:
 # UniqueCheck
 # --------------------------------------------------------------------- #
 
+
 class TestUniqueCheck:
     def test_passes_when_unique(self):
         df = pd.DataFrame({"id": [1, 2, 3, 4]})
@@ -89,6 +88,7 @@ class TestUniqueCheck:
 # --------------------------------------------------------------------- #
 # Registry
 # --------------------------------------------------------------------- #
+
 
 class TestCheckRegistry:
     def test_registry_contains_known_checks(self):

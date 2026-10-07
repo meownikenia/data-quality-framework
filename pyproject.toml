@@ -43,14 +43,23 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W", "UP", "B"]
+ignore = [
+    "B008",   # typer uses function calls in defaults by design
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/dq_framework/integrations/airflow.py" = ["N806"]   # BaseOperator is a class-like import
+"src/dq_framework/reporters/html.py" = ["E501"]         # HTML template lines
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--cov=dq_framework --cov-report=term-missing -v"
 
 [tool.coverage.run]
+source = ["src/dq_framework"]
 omit = [
     "*/integrations/airflow.py",
+    "*/__init__.py",
 ]
 
 [tool.coverage.report]
@@ -58,6 +67,7 @@ exclude_lines = [
     "pragma: no cover",
     "if TYPE_CHECKING:",
     "raise NotImplementedError",
+    "if __name__ == .__main__.:",
 ]
 
 

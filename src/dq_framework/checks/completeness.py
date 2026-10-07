@@ -5,7 +5,6 @@ from __future__ import annotations
 import time
 
 import pandas as pd
-
 from dq_framework.checks.base import BaseCheck
 from dq_framework.models import CheckResult, CheckStatus, Severity
 
@@ -40,8 +39,7 @@ class NotNullCheck(BaseCheck):
 
         return self._result(
             CheckStatus.FAILED,
-            f"Column '{self.column}' has {null_count}/{total} nulls "
-            f"({null_count / total:.1%})",
+            f"Column '{self.column}' has {null_count}/{total} nulls " f"({null_count / total:.1%})",
             observed=null_count,
             expected=0,
             duration_ms=duration,

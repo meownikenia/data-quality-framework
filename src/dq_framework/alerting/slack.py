@@ -67,10 +67,7 @@ class SlackAlerter:
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": (
-                            f"• *`{r.check_name}`* "
-                            f"[{r.severity.value}] — {r.message}"
-                        ),
+                        "text": (f"• *`{r.check_name}`* " f"[{r.severity.value}] — {r.message}"),
                     },
                 }
             )

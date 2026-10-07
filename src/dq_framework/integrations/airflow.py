@@ -10,7 +10,6 @@ from __future__ import annotations
 from typing import Any
 
 import pandas as pd
-
 from dq_framework.suite import Suite
 
 
@@ -34,6 +33,7 @@ def _require_airflow() -> Any:
 # --------------------------------------------------------------------- #
 # Core logic (testable without Airflow installed)
 # --------------------------------------------------------------------- #
+
 
 def run_suite(
     suite_path: str,
@@ -74,6 +74,7 @@ def run_suite(
 # --------------------------------------------------------------------- #
 # Airflow Operator (lazy — only instantiated if Airflow is installed)
 # --------------------------------------------------------------------- #
+
 
 def make_airflow_operator() -> type:
     """Factory that builds the DataQualityOperator class.

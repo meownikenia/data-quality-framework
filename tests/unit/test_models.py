@@ -48,15 +48,11 @@ class TestSuiteResult:
         assert suite.status == CheckStatus.PASSED
 
     def test_status_failed_when_any_fails(self):
-        suite = self._make_suite(
-            [make_result(CheckStatus.PASSED), make_result(CheckStatus.FAILED)]
-        )
+        suite = self._make_suite([make_result(CheckStatus.PASSED), make_result(CheckStatus.FAILED)])
         assert suite.status == CheckStatus.FAILED
 
     def test_status_error_takes_priority(self):
-        suite = self._make_suite(
-            [make_result(CheckStatus.FAILED), make_result(CheckStatus.ERROR)]
-        )
+        suite = self._make_suite([make_result(CheckStatus.FAILED), make_result(CheckStatus.ERROR)])
         assert suite.status == CheckStatus.ERROR
 
     def test_pass_rate(self):

@@ -4,7 +4,6 @@ from datetime import UTC, datetime, timedelta
 
 import pandas as pd
 import pytest
-
 from dq_framework.checks.volume import FreshnessCheck, RowCountCheck
 from dq_framework.models import CheckStatus, Severity
 
