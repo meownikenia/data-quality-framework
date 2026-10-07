@@ -1,0 +1,89 @@
+{
+  "suite_name": "orders_quality",
+  "table": "analytics.orders",
+  "status": "passed",
+  "pass_rate": 1.0,
+  "duration_ms": 6.404,
+  "started_at": "2026-10-07T07:35:38.769861+00:00",
+  "finished_at": "2026-10-07T07:35:38.776265+00:00",
+  "results": [
+    {
+      "check_name": "not_null",
+      "status": "passed",
+      "severity": "critical",
+      "message": "Column 'order_id' has no nulls (7 rows)",
+      "observed_value": 0,
+      "expected_value": 0,
+      "duration_ms": 1.629166305065155,
+      "timestamp": "2026-10-07T07:35:38.772176Z",
+      "metadata": {
+        "column": "order_id"
+      }
+    },
+    {
+      "check_name": "unique",
+      "status": "passed",
+      "severity": "critical",
+      "message": "Column 'order_id' is unique (7 rows)",
+      "observed_value": 0,
+      "expected_value": 0,
+      "duration_ms": 0.8499999530613422,
+      "timestamp": "2026-10-07T07:35:38.773061Z",
+      "metadata": {
+        "column": "order_id"
+      }
+    },
+    {
+      "check_name": "not_null",
+      "status": "passed",
+      "severity": "critical",
+      "message": "Column 'customer_id' has no nulls (7 rows)",
+      "observed_value": 0,
+      "expected_value": 0,
+      "duration_ms": 0.04520826041698456,
+      "timestamp": "2026-10-07T07:35:38.773111Z",
+      "metadata": {
+        "column": "customer_id"
+      }
+    },
+    {
+      "check_name": "range",
+      "status": "passed",
+      "severity": "warning",
+      "message": "Column 'amount' all within range >=0 and <=100000",
+      "observed_value": 0,
+      "expected_value": 0,
+      "duration_ms": 0.2819579094648361,
+      "timestamp": "2026-10-07T07:35:38.773398Z",
+      "metadata": {
+        "column": "amount"
+      }
+    },
+    {
+      "check_name": "row_count",
+      "status": "passed",
+      "severity": "warning",
+      "message": "Row count is 7 (expected >=5 and <=1000000)",
+      "observed_value": 7,
+      "expected_value": ">=5 and <=1000000",
+      "duration_ms": 0.0007082708179950714,
+      "timestamp": "2026-10-07T07:35:38.773404Z",
+      "metadata": {
+        "column": null
+      }
+    },
+    {
+      "check_name": "freshness",
+      "status": "passed",
+      "severity": "critical",
+      "message": "Data is -2.7h old (max allowed: 24h)",
+      "observed_value": "-2.7h",
+      "expected_value": "<=24h",
+      "duration_ms": 2.7182921767234802,
+      "timestamp": "2026-10-07T07:35:38.776261Z",
+      "metadata": {
+        "column": "created_at"
+      }
+    }
+  ]
+}

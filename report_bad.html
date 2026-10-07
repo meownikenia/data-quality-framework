@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DQ Report — orders_quality</title>
+<style>
+  :root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #0f172a;
+    --muted: #64748b;
+    --green: #16a34a;
+    --red: #dc2626;
+    --orange: #ea580c;
+    --blue: #2563eb;
+    --yellow: #ca8a04;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.5;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header { margin-bottom: 2rem; }
+  h1 { margin: 0 0 0.25rem; font-size: 1.75rem; }
+  .subtitle { color: var(--muted); font-size: 0.95rem; }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+  }
+  .stat-label {
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .stat-value { font-size: 1.5rem; font-weight: 600; margin-top: 0.25rem; }
+  .status-passed { color: var(--green); }
+  .status-failed { color: var(--red); }
+  .status-error { color: var(--orange); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: #f1f5f9; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  tr:last-child td { border-bottom: none; }
+  .badge {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .badge-passed { background: #dcfce7; color: var(--green); }
+  .badge-failed { background: #fee2e2; color: var(--red); }
+  .badge-error  { background: #ffedd5; color: var(--orange); }
+  .badge-skipped { background: #e2e8f0; color: var(--muted); }
+  .sev-info { color: var(--blue); }
+  .sev-warning { color: var(--yellow); }
+  .sev-critical { color: var(--red); font-weight: 600; }
+  footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>orders_quality</h1>
+    <div class="subtitle">Table: <code>analytics.orders</code></div>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">Status</div>
+      <div class="stat-value status-failed">FAILED</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Pass rate</div>
+      <div class="stat-value">33.3%</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Checks</div>
+      <div class="stat-value">6</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Duration</div>
+      <div class="stat-value">7.1 ms</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Check</th>
+        <th>Column</th>
+        <th>Severity</th>
+        <th>Status</th>
+        <th>Message</th>
+        <th style="text-align:right">Time (ms)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td><code>not_null</code></td>
+        <td>order_id</td>
+        <td class="sev-critical">critical</td>
+        <td><span class="badge badge-passed">passed</span></td>
+        <td>Column &#39;order_id&#39; has no nulls (4 rows)</td>
+        <td style="text-align:right">1.6</td>
+      </tr>
+      
+      <tr>
+        <td><code>unique</code></td>
+        <td>order_id</td>
+        <td class="sev-critical">critical</td>
+        <td><span class="badge badge-failed">failed</span></td>
+        <td>Column &#39;order_id&#39; has 1 duplicate(s) out of 4</td>
+        <td style="text-align:right">0.9</td>
+      </tr>
+      
+      <tr>
+        <td><code>not_null</code></td>
+        <td>customer_id</td>
+        <td class="sev-critical">critical</td>
+        <td><span class="badge badge-failed">failed</span></td>
+        <td>Column &#39;customer_id&#39; has 1/4 nulls (25.0%)</td>
+        <td style="text-align:right">0.0</td>
+      </tr>
+      
+      <tr>
+        <td><code>range</code></td>
+        <td>amount</td>
+        <td class="sev-warning">warning</td>
+        <td><span class="badge badge-failed">failed</span></td>
+        <td>Column &#39;amount&#39; has 1 value(s) outside range &gt;=0 and &lt;=100000</td>
+        <td style="text-align:right">0.3</td>
+      </tr>
+      
+      <tr>
+        <td><code>row_count</code></td>
+        <td>—</td>
+        <td class="sev-warning">warning</td>
+        <td><span class="badge badge-failed">failed</span></td>
+        <td>Row count is 4 (expected &gt;=5 and &lt;=1000000)</td>
+        <td style="text-align:right">0.0</td>
+      </tr>
+      
+      <tr>
+        <td><code>freshness</code></td>
+        <td>created_at</td>
+        <td class="sev-critical">critical</td>
+        <td><span class="badge badge-passed">passed</span></td>
+        <td>Data is -1.4h old (max allowed: 24h)</td>
+        <td style="text-align:right">3.2</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <footer>
+    Generated by <strong>dq-framework</strong> at 2026-10-07 07:36:56 UTC
+  </footer>
+</div>
+</body>
+</html>

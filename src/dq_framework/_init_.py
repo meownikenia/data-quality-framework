@@ -1,7 +1,7 @@
-"""Data Quality Framework — production-ready DQ checks for modern data stacks."""
+"""Reporters for rendering SuiteResult into various formats."""
 
-__version__ = "0.1.0"
+from dq_framework.reporters.base import Reporter
+from dq_framework.reporters.html import HTMLReporter
+from dq_framework.reporters.json import JSONReporter
 
-from dq_framework.models import CheckResult, CheckStatus, Severity, SuiteResult
-
-__all__ = ["CheckResult", "CheckStatus", "Severity", "SuiteResult", "__version__"]
+__all__ = ["Reporter", "HTMLReporter", "JSONReporter"]

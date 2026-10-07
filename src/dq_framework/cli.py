@@ -101,6 +101,9 @@ def run(
     output_json: Path | None = typer.Option(
         None, "--output-json", help="Write result as JSON to this path"
     ),
+    output_html: Path | None = typer.Option(
+        None, "--output-html", help="Write result as HTML to this path"
+    ),
 ) -> None:
     """Run a data quality suite against a data file."""
     try:
@@ -114,8 +117,16 @@ def run(
     _render_result(result)
 
     if output_json is not None:
-        output_json.write_text(result.model_dump_json(indent=2))
+        from dq_framework.reporters import JSONReporter
+
+        JSONReporter().write(result, output_json)
         console.print(f"[dim]JSON written to {output_json}[/dim]")
+
+    if output_html is not None:
+        from dq_framework.reporters import HTMLReporter
+
+        HTMLReporter().write(result, output_html)
+        console.print(f"[dim]HTML written to {output_html}[/dim]")
 
     if fail_on_critical and result.critical_failures:
         raise typer.Exit(code=1)
