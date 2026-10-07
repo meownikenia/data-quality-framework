@@ -18,3 +18,4 @@ demo:
 
 clean:
 	rm -rf .pytest_cache .coverage htmlcov dist build
+	find . -type d -name __pycache__ -exec rm -rf {} +

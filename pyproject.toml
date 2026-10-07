@@ -1,26 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "dq-framework"
 version = "0.1.0"
-description = "Production-ready data quality framework"
+description = "Production-ready data quality framework for modern data stacks"
+readme = "README.md"
 requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Meownikenia", email = "you@example.com" }]
 dependencies = [
     "pandas>=2.0",
     "sqlalchemy>=2.0",
     "pydantic>=2.0",
-    "great-expectations>=0.18",
     "pyyaml>=6.0",
     "rich>=13.0",
     "typer>=0.9",
+    "jinja2>=3.1",
+    "httpx>=0.25",
 ]
 
 [project.optional-dependencies]
 airflow = ["apache-airflow>=2.7"]
-dbt = ["dbt-core>=1.6"]
-dev = ["pytest>=7.4", "pytest-cov", "ruff", "mypy", "pre-commit"]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.1.6",
+    "mypy>=1.7",
+    "pre-commit>=3.5",
+]
+
+[project.scripts]
+dq = "dq_framework.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dq_framework"]
 
 [tool.ruff]
 line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov=dq_framework --cov-report=term-missing"
+addopts = "--cov=dq_framework --cov-report=term-missing -v"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
