@@ -1,0 +1,26 @@
+[project]
+name = "dq-framework"
+version = "0.1.0"
+description = "Production-ready data quality framework"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0",
+    "sqlalchemy>=2.0",
+    "pydantic>=2.0",
+    "great-expectations>=0.18",
+    "pyyaml>=6.0",
+    "rich>=13.0",
+    "typer>=0.9",
+]
+
+[project.optional-dependencies]
+airflow = ["apache-airflow>=2.7"]
+dbt = ["dbt-core>=1.6"]
+dev = ["pytest>=7.4", "pytest-cov", "ruff", "mypy", "pre-commit"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=dq_framework --cov-report=term-missing"
