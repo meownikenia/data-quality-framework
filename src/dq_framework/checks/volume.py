@@ -94,10 +94,9 @@ class FreshnessCheck(BaseCheck):
         threshold = timedelta(hours=self.max_age_hours)
         status = CheckStatus.PASSED if age <= threshold else CheckStatus.FAILED
 
+        age_display = f"{age_hours:.1f}h" if age_hours >= 0 else f"{-age_hours:.1f}h in the future"
         return self._result(
-            status,
-            f"Data is {age_hours:.1f}h old (max allowed: {self.max_age_hours}h)",
-            observed=f"{age_hours:.1f}h",
-            expected=f"<={self.max_age_hours}h",
-            duration_ms=duration,
+        status,
+        f"Data is {age_display} (max allowed: {self.max_age_hours}h)",
+
         )

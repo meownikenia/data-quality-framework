@@ -218,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+report.html
+report_bad.html
+report.json
+
+# Generated reports
+report.html
+report_bad.html
+report.json
