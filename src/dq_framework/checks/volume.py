@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+import warnings
 from datetime import UTC, datetime, timedelta
 
 import pandas as pd
@@ -76,7 +77,13 @@ class FreshnessCheck(BaseCheck):
                 duration_ms=(time.perf_counter() - start) * 1000,
             )
 
-        series = pd.to_datetime(df[self.column], errors="coerce").dropna()
+        # Suppress pandas' UserWarning when it can't infer a single datetime format
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            parsed = pd.to_datetime(df[self.column], errors="coerce")
+
+        series = pd.Series(parsed).dropna()
+
         if series.empty:
             return self._error_result(
                 f"Column '{self.column}' has no valid timestamps",
@@ -94,9 +101,10 @@ class FreshnessCheck(BaseCheck):
         threshold = timedelta(hours=self.max_age_hours)
         status = CheckStatus.PASSED if age <= threshold else CheckStatus.FAILED
 
-        age_display = f"{age_hours:.1f}h" if age_hours >= 0 else f"{-age_hours:.1f}h in the future"
         return self._result(
-        status,
-        f"Data is {age_display} (max allowed: {self.max_age_hours}h)",
-
+            status,
+            f"Data is {age_hours:.1f}h old (max allowed: {self.max_age_hours}h)",
+            observed=f"{age_hours:.1f}h",
+            expected=f"<={self.max_age_hours}h",
+            duration_ms=duration,
         )

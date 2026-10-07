@@ -46,6 +46,19 @@ select = ["E", "F", "I", "N", "W", "UP", "B"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--cov=dq_framework --cov-report=term-missing -v"
+
+[tool.coverage.run]
+omit = [
+    "*/integrations/airflow.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]
 
 
 addopts = "--cov=dq_framework --cov-report=term-missing -v"
