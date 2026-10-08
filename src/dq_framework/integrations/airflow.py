@@ -7,7 +7,7 @@ have Airflow in your environment.
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, cast
 
 import pandas as pd
 from dq_framework.suite import Suite
@@ -118,4 +118,4 @@ def make_airflow_operator() -> type:
             self.log.info("DQ suite completed: %s", summary)
             return summary
 
-    return DataQualityOperator
+    return cast(type, DataQualityOperator)
